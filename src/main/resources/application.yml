@@ -1,0 +1,12 @@
+server:
+  port: 8086 # http 和 websocket使用同一个端口
+
+spring:
+  mvc:
+    view:
+      suffix: .html
+      prefix: /
+app:
+  room:
+    max:
+      count: 5 # 最大房间数

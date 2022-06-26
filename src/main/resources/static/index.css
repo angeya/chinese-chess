@@ -1,0 +1,137 @@
+body,h1,h2,h3,h4,h5,h5,li,p{
+    margin: 0;
+    padding: 0;
+}
+.operation{
+    margin: 12px;
+}
+#tip{
+    font-size: 30px;
+}
+#input-room-id{
+    height: 24px;
+    width: 120px;
+}
+#exit-room{
+    display: none;
+}
+.btn{
+    width: 120px;
+    padding: 5px 0;
+    margin: 2px;
+    text-align: center;
+    color: white;
+    background-color: #2376b7;
+    border-radius: 4px;
+    cursor: pointer;
+}
+/************* 棋盘相关 ***********/
+.board{
+    position: absolute;
+    top: 100px;
+    left: 100px;
+}
+.board *{
+    /*不可以鼠标选中文字*/
+    user-select: none;
+}
+.rows{
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+}
+.row{
+    width: 480px;
+    height: 2px;
+    margin: 29px;
+    background: #ff0033;
+}
+.cols{
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+}
+.col{
+    width: 2px;
+    height: 540px;
+    margin: 29px;
+    background: #ff0033;
+}
+.boundary{
+    position: absolute;
+    top: 271px;
+    left: 31px;
+    width: 478px;
+    height: 58px;
+    background: #ffffff;
+}
+.boundary-text{
+    position: relative;
+    font-size: 30px;
+    color: #ff0033;
+    line-height: 58px;
+    text-align: center;
+    /* 50%装不下 */
+    width: 49%;
+    display: inline-block;
+}
+.diagonal{
+    position: absolute;
+    width: 2px;
+    background: #ff0033;
+    height: 170px;
+}
+.line-left-up{
+    top: 5px;
+    left: 269px;
+    transform: rotate(-45deg);
+}
+.line-right-up{
+    top: 5px;
+    left: 269px;
+    transform: rotate(45deg);
+}
+.line-left-down{
+    top: 426px;
+    left: 269px;
+    transform: rotate(-45deg);
+}
+.line-right-down{
+    top: 426px;
+    left: 269px;
+    transform: rotate(45deg);
+}
+.chess{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f3a702; 
+    cursor: pointer;
+}
+.red{
+    color: #ff0033
+}
+.black{
+    color: #000000;
+}
+.can-go-point{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(93, 240, 93, 0.6); 
+}
+.move-track{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(220, 231, 22, 0.5);
+}

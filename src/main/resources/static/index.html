@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>中国象棋</title>
+        <link href="index.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="operation">
+                <input id="input-room-id" class="" placeholder="输入房间号"/>
+                <div id="add-to-room" class="btn" onclick="addToRoom()">加入已有房间</div>
+                <h2 id="show-room-id" class=""></h2>
+                <div id="create-room" class="btn" onclick="getRoomId()">创建新房间</div>
+                <div id="exit-room" class="btn" onclick="exitRoom()">退出房间</div>
+            </div>
+            <div id="board" class="board">
+            </div>
+            <div id="tip">
+            </div>
+        </div>
+    </body>
+    <script src="chess-board.js" type="text/javascript"></script>
+    <script src="chess.js" type="text/javascript"></script>
+    <script src="util.js" type="text/javascript"></script>
+    <script src="room-manager.js" type="text/javascript"></script>
+    <script src="constant.js" type="text/javascript"></script>
+    <script>
+        const inputRoomIdEle = document.getElementById('input-room-id')
+        const addToRoomEle = document.getElementById('add-to-room')
+        const showRoomIdEle = document.getElementById('show-room-id')
+        const createRoomEle = document.getElementById('create-room')
+        const exitRoomEle = document.getElementById('exit-room')
+        let roomId = null; // 房间号
+
+        // 创建房间
+        function getRoomId() {
+            const reqData = new RequestData(Constant.CREATE_ROOM, null)
+            connection.send(JSON.stringify(reqData))
+        }
+        let chessboard = new Chessboard();
+        const connection = new WebSocket('ws://127.0.0.1:8086/webSocket')
+        connection.onmessage = (res) => {
+            const resData = JSON.parse(res.data)
+            switch (resData.type) {
+                case 'create_room':
+                    console.log(resData.data)
+                    roomId =  resData.data
+                    break
+                case Constant.INIT:
+                case Constant.READY:
+                case Constant.MOVE:
+                case Constant.WAIT:
+                    chessboard.handleMsg(resData)
+            }
+        }
+        console.log(connection)
+    </script>
+</html>
